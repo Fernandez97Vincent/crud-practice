@@ -31,6 +31,19 @@ app.post("/create", (req, res) => {
     .catch(err => console.log(err))
 })
 
+app.get("/posts", (req, res) => {
+    Post.find()
+        .then((items) => res.json(items))
+        .then((err) => console.log(err))
+    });
+
+app.delete("/delete/:id", (req, res) => {
+    Post.findByIdAndDelete({_id: req.params.id})
+    .then((doc) => console.log(doc))
+    .then((err) => console.log(err));
+})
+
+
 app.listen(3001, function() {
     console.log("Server is running");
 })
