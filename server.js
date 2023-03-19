@@ -14,7 +14,21 @@ mongoose
 
 const postSchema = mongoose.Schema({
     title: String,
-    description: String
+    shift: String,
+    george: String,
+    horacio: String,
+    freddie: String,
+    rafaela: String,
+    catalina: String,
+    ranulfo: String,
+    james: String,
+    gabe: String,
+    john: String,
+    bruce: String,
+    vincent: String,
+    bam: String,
+    yoshiko: String,
+    josh: String,
 })
 
 const Post = mongoose.model("Post", postSchema);
@@ -26,7 +40,22 @@ app.get("/", (req, res) => {
 app.post("/create", (req, res) => {
     Post.create({
         title: req.body.title,
-        description: req.body.description
+        shift: req.body.shift,
+        george: req.body.george,
+        horacio: req.body.horacio,
+        freddie: req.body.freddie,
+        rafaela: req.body.rafaela,
+        catalina: req.body.catalina,
+        ranulfo: req.body.ranulfo,
+        james: req.body.james,
+        gabe: req.body.gabe,
+        john: req.body.john,
+        bruce: req.body.bruce,
+        vincent: req.body.vincent,
+        bam: req.body.bam,
+        yoshiko: req.body.yoshiko,
+        josh: req.body.josh,
+
     }).then(doc => console.log(doc))
     .catch(err => console.log(err))
 })
