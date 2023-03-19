@@ -1,12 +1,47 @@
 const express = require("express");
 const cors = require("cors");
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const fs = require('fs');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: "/images",
+    filename: function(req, file, cb){
+       cb(null,"IMAGE-" + Date.now() + path.extname(file.originalname));
+    }
+ });
+ 
+ const upload = multer({
+    storage: storage,
+    limits:{fileSize: 1000000},
+ }).single("myImage");
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
+
+// app.use('/images', express.static('/images'))
+// app.get('/images/:imageName', (req, res) => {
+//     // do a bunch of if statements to make sure the user is 
+//     // authorized to view this image, then
+  
+//     const imageName = req.params.imageName
+//     const readStream = fs.createReadStream(`images/${imageName}`)
+//     readStream.pipe(res)
+//   })
+
+//   app.post('/api/images', upload.single('image'), (req, res) => {
+
+  
+//     // Save this data to a database probably
+  
+//     console.log(description)
+//     res.send({description})
+//   })
+
+
 
 mongoose
 .connect("mongodb://localhost:27017/testDB")
